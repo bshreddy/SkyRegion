@@ -5,12 +5,14 @@ import torchvision
 import torchvision.transforms as T
 from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
 from torchvision.models.detection.mask_rcnn import MaskRCNNPredictor
+from torchsummary import summary
 
 from PIL import Image
 from PIL import ImageFile
 
 import numpy as np
 import io
+import os
 
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
@@ -32,14 +34,14 @@ def get_transforms():
 def transform_image(img_bytes):
     img_transforms = get_transforms()
 
-    img = Image.open(io.BytesIO(img_bytes))
+    img = Image.open(io.BytesIO(img_bytes)).convert("RGB")
     return img_transforms(img).unsqueeze(0)
 
 def first_nonzero(arr, axis, invalid_val=-1):
     mask = arr>=0.5
     return np.where(mask.any(axis=axis), mask.argmax(axis=axis), invalid_val)
 
-model_path = "models/sky-region_mask_r-cnn_resnet50-fpn-1579167716"
+model_path = os.path.join("models", "sky-region_mask_r-cnn_resnet50-fpn-1579167716")
 model = get_instance_segmentation_model()
 model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
 model.eval()
