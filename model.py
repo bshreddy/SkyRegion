@@ -5,7 +5,6 @@ import torchvision
 import torchvision.transforms as T
 from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
 from torchvision.models.detection.mask_rcnn import MaskRCNNPredictor
-from torchsummary import summary
 
 from PIL import Image
 from PIL import ImageFile
