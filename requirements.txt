@@ -1,0 +1,10 @@
+Flask==1.1.2
+numpy==1.18.2
+pandas==1.0.3
+Pillow==7.1.1
+requests==2.23.0
+tqdm==4.45.0
+
+--find-links https://download.pytorch.org/whl/torch_stable.html
+torch==1.4.0+cpu 
+torchvision==0.5.0+cpu

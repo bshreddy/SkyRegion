@@ -1,0 +1,1 @@
+docker run -d --rm -p 8001:8000 --name sky-region sky-region
